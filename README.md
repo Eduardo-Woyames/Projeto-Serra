@@ -20,7 +20,7 @@ Salve as músicas encontradas em qualquer uma de suas playlists com apenas um cl
 
 ## ⚙️ Como Rodar o Projeto
 
-### Instalação e execução:
+### Instalação e execução (Frontend):
 
 1. Clone o Repositório:
 ```
@@ -38,6 +38,21 @@ npm install
 ```
 npm run dev
 ```
+### Instalação e execução (  backend):
+
+1. Navegue até a pasta do frontend:
+```
+cd backend/api
+```
+2. Instale as dependências:
+```
+npm install
+```
+3. Inicie o servidor de desenvolvimento:
+```
+npm run dev
+```
+
 Após a execução, a aplicação estará disponível em seu navegador.
 
 ## 👨‍💻 Autores
