@@ -38,11 +38,11 @@ npm install
 ```
 npm run dev
 ```
-### Instalação e execução (  backend):
+### Instalação e execução (Backend):
 
-1. Navegue até a pasta do frontend:
+1. Navegue até a pasta do backend:
 ```
-cd backend/api
+cd backfinal/api
 ```
 2. Instale as dependências:
 ```
