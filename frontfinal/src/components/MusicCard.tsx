@@ -1,20 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 
-// Definindo as props que o nosso card de música vai receber
+//  props que o nosso card de música vai receber
 interface MusicCardProps {
   title: string;
   artistName: string;
   albumCover: string;
   previewUrl: string; // Prop com o link do mp3
+  onAddToPlaylist: () => void; 
 }
 
-function MusicCard({ title, artistName, albumCover, previewUrl }: MusicCardProps) {
+function MusicCard({ title, artistName, albumCover, previewUrl, onAddToPlaylist }: MusicCardProps) {
   // Estado para saber se a música está tocando ou não
   const [isPlaying, setIsPlaying] = useState(false);
-  // Referência para controlar o elemento <audio> diretamente
+  // Referência para controlar o elemento audio diretamente
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Função para tocar ou pausar a música
+  
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -32,15 +33,15 @@ function MusicCard({ title, artistName, albumCover, previewUrl }: MusicCardProps
     const onEnded = () => setIsPlaying(false);
 
     audioEl?.addEventListener('ended', onEnded);
-    // Limpa o "escutador" quando o componente for desmontado
+   
     return () => {
       audioEl?.removeEventListener('ended', onEnded);
     }
   }, []);
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg w-52 overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
-      {/* O elemento <audio> fica aqui, escondido. Ele contém a URL da prévia. */}
+    <div className="relative bg-gray-800 rounded-lg shadow-lg w-full overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+      {/* O audio fica aqui, escondido. contém a URL da prévia. */}
       <audio ref={audioRef} src={previewUrl} />
 
       <img src={albumCover} alt={`Capa do álbum de ${title}`} className="w-full h-52 object-cover" />
@@ -52,12 +53,18 @@ function MusicCard({ title, artistName, albumCover, previewUrl }: MusicCardProps
         {/* Botão de Tocar/Pausar com o ícone */}
         <button
           onClick={togglePlayPause}
-          disabled={!previewUrl} // Desabilita o botão se não houver link para a prévia
           className="mt-4 mx-auto bg-blue-500 hover:bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center text-xl disabled:bg-gray-600 disabled:cursor-not-allowed"
         >
           {isPlaying ? '⏸️' : '🎵'}
         </button>
       </div>
+      <button
+        onClick={onAddToPlaylist}
+        className="absolute bottom-3 right-3 bg-green-500 hover:bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-2xl font-bold"
+        title="Adicionar à playlist"
+      >
+        +
+      </button>
     </div>
   );
 }

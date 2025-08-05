@@ -1,16 +1,18 @@
 import fastify, { FastifyRequest, FastifyReply } from 'fastify';
-import fastifyJwt from '@fastify/jwt';
+import jwt from '@fastify/jwt';
 import dotenv from 'dotenv';
+import cors from '@fastify/cors';
 
 import { usersRoutes } from './routes/users';
 import { playlistRoutes } from './routes/playlist';
 import { songsRoutes } from './routes/songs';
+import { METHODS } from 'http';
 
 dotenv.config();
 
 const app = fastify();
 
-app.register(fastifyJwt, {
+app.register(jwt, {
   secret: process.env.JWT_SECRET!,
 });
 
@@ -21,6 +23,12 @@ app.decorate('authenticate', async function (request: FastifyRequest, reply: Fas
     reply.send(err);
   }
 });
+
+app.register(cors, {
+  origin: ['http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+
+})
 
 app.register(usersRoutes);
 app.register(playlistRoutes);

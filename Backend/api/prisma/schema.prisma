@@ -24,7 +24,7 @@ model Playlist {
 
 model Song {
   id          Int    @id @default(autoincrement())
-  deezerId    String
+  deezerId    String @unique
   title       String
   artist      String
   playlistId  Int

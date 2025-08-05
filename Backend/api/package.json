@@ -5,15 +5,16 @@
     "dev": "tsx watch src/server.ts",
     "seed": "tsx prisma/seed.ts",
     "build": "tsc",
-    "start": "node dist/http/server.js",
+    "start": "node dist/server.js",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@fastify/jwt": "^9.1.0",
     "@prisma/client": "^6.11.1",
     "bcryptjs": "^2.4.3",
     "fastify": "^4.25.0",
-    "fastify-jwt": "^6.1.1",
     "node-fetch": "^3.3.2",
     "zod": "^3.25.4"
   },

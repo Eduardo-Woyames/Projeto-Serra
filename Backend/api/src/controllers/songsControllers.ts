@@ -3,7 +3,7 @@ import { z } from 'zod';
 import fetch from 'node-fetch';
 
 interface DeezerSearchResponse {
-  data: any[]; // Pode ser mais específico se quiser, mas any[] já resolve
+  data: any[]; 
   total: number;
   next?: string;
 }
@@ -27,6 +27,6 @@ export async function songsController(app: FastifyInstance) {
       artist: song.artist.name,
     }));
 
-    return result;
+    return res.send(result);
   });
 }

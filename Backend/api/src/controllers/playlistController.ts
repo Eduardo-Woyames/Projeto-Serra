@@ -17,7 +17,7 @@ export async function playlistController(app: FastifyInstance) {
     const playlist = await prisma.playlist.create({
       data: {
         title,
-        userId: Number(req.user.sub),
+        userId: Number(req.user.id),
       },
     });
 
