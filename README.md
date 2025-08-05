@@ -43,4 +43,4 @@ Após a execução, a aplicação estará disponível em seu navegador.
 ## 👨‍💻 Autores
 
 ### Este projeto foi desenvolvido por:
-Roan Osório, Eduardo Woyames e Guilherme Verly.
+Eduardo Woyames, Guilherme Verly e Roan Osório.
